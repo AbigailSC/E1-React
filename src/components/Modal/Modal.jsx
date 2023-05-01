@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react';
 import {
-  ModalWrapper,
   Header,
   Footer,
   Body,
@@ -12,13 +11,15 @@ import {
   SelectField,
   Button
 } from './modal.styles';
-import { Divider, Overlay } from '@styles/global';
+import { Divider, Overlay, ModalWrapper } from '@styles/global';
 import { IoClose } from 'react-icons/io5';
-import { categories } from '../../helpers/categories';
-import { Context } from '../../store/context';
+import { categories } from '@helpers/categories';
+import { Context } from '@store/context';
+import { v4 } from 'uuid';
 
 const Modal = ({ isOpen, onClose }) => {
   const [input, setInput] = useState({
+    id: v4(),
     title: '',
     date: '',
     time: '',
@@ -68,7 +69,6 @@ const Modal = ({ isOpen, onClose }) => {
     e.preventDefault();
     setErrors(validation(input));
     if (Object.keys(errors).length > 0) return;
-    console.log(input);
     dispatch({ type: 'ADD_TASK', payload: input });
     setInput({
       title: '',
@@ -138,6 +138,9 @@ const Modal = ({ isOpen, onClose }) => {
                 value={input.category}
                 isError={errors.category !== undefined}
               >
+                <option value="" disabled selected>
+                  Select a category
+                </option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.name}>
                     {category.name}

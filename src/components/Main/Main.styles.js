@@ -20,6 +20,6 @@ export const ContainerCards = styled.div`
   padding: 2em 4em;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(4, minmax(0, 1fr));
-  gap: 4em 1em;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 1em 1.5em;
 `;
