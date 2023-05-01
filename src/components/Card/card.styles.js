@@ -32,11 +32,6 @@ export const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  h3 {
-    font-size: 1.5em;
-    font-weight: 600;
-    text-transform: capitalize;
-  }
   button {
     .icon {
       color: var(--background-hover);
@@ -46,6 +41,13 @@ export const Header = styled.div`
       }
     }
   }
+`;
+
+export const Title = styled.h3`
+    text-decoration: ${(props) => (props.decoration ? "line-through 2px" : "none")};
+    font-size: 1.5em;
+    font-weight: 600;
+    text-transform: capitalize;
 `;
 
 export const HStack = styled.div`
@@ -136,4 +138,8 @@ export const Form = styled.form`
       z-index: 2;
     }
   }
+`;
+
+export const Text = styled.p`
+  text-decoration: ${(props) => (props.decoration ? "line-through 2px" : "none")};
 `;

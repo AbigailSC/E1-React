@@ -1,12 +1,21 @@
+import { useContext } from 'react';
 import {
   ContainerSidebar,
   ContainerList,
   ListElement,
-  Button
+  Button,
+  Form
 } from './sidebar.styles';
 import { categories } from '@helpers/categories';
+import { Context } from '../../store/context';
 
 const Sidebar = () => {
+  const { state, dispatch } = useContext(Context);
+  console.log('🚀 ~ file: Sidebar.jsx:14 ~ Sidebar ~ state:', state);
+
+  const hideDoneTasks = () => {
+    dispatch({ type: 'FILTER_TASKS' });
+  };
   return (
     <ContainerSidebar>
       <header>Filter By:</header>
@@ -24,6 +33,15 @@ const Sidebar = () => {
           </ListElement>
         ))}
       </ContainerList>
+      <Form>
+        <input
+          type="checkbox"
+          id="completed"
+          checked={state.showFiltered}
+          onChange={() => hideDoneTasks()}
+        />
+        <label htmlFor="completed">Hide done tasks</label>
+      </Form>
       <Button>Reset filter</Button>
     </ContainerSidebar>
   );

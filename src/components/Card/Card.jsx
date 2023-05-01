@@ -7,7 +7,9 @@ import {
   HStack,
   Footer,
   ModalContainer,
-  Form
+  Form,
+  Title,
+  Text
 } from './card.styles';
 import { TfiMoreAlt } from 'react-icons/tfi';
 import { MdOutlineDateRange, MdAccessTime } from 'react-icons/md';
@@ -63,7 +65,7 @@ const Card = ({
         id={id}
       />
       <Header className="element">
-        <h3>{title}</h3>
+        <Title decoration={isCompleted}>{title}</Title>
         <button onClick={() => handleShow()}>
           <TfiMoreAlt className="icon" />
         </button>
@@ -96,7 +98,9 @@ const Card = ({
           {time || '--:--'}
         </div>
       </HStack>
-      <p className="element">{description}</p>
+      <Text decoration={isCompleted} className="element">
+        {description}
+      </Text>
       <Footer className="element">
         <Form color={bgColor}>
           <input

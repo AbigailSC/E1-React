@@ -63,3 +63,53 @@ export const Button = styled.button`
   border-radius: 0.5em;
   padding: 0.5em 1em;
 `;
+
+export const Form = styled.form`
+  display: flex;
+  gap: 0.25em;
+  align-items: center;
+  label {
+    font-weight: 600;
+    cursor: pointer;
+  }
+  input[type="checkbox"] {
+    position: relative;
+    cursor: pointer;
+    border: 2px solid var(--text-color-hover);
+    border-radius: 2px;
+    background: transparent;
+    line-height: 0;
+    outline: 0;
+    padding: 0 !important;
+    height: 20px;
+    width: 20px;
+    appearance: none;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+    &:checked {
+      background-color: var(--input-bg);
+      opacity: 1;
+    }
+    &:before {
+      content: "";
+      cursor: pointer;
+      color: var(--input-bg);
+      position: absolute;
+      right: 50%;
+      top: 50%;
+      width: 4px;
+      height: 10px;
+      border: solid ${(props) => props.color};
+      border-width: 0 2px 2px 0;
+      margin: -1px -1px 0 -1px;
+      transform: rotate(45deg) translate(-50%, -50%);
+    }
+    &:checked:before {
+      content: "";
+      cursor: pointer;
+      color: var(--text-color-hover);
+    }
+  }
+`;

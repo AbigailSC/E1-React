@@ -11,6 +11,19 @@ const Main = () => {
         <ContainerCards>
           {state.items === null || state.items.length === 0 ? (
             <p>no hay nada</p>
+          ) : state.showFiltered ? (
+            state.itemsFiltered.map((item, index) => (
+              <Card
+                key={index}
+                id={item.id}
+                title={item.title}
+                description={item.description}
+                category={item.category}
+                date={item.date}
+                time={item.time}
+                isCompleted={item.completed}
+              />
+            ))
           ) : (
             state.items.map((item, index) => (
               <Card
