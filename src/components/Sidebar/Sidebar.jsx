@@ -11,11 +11,20 @@ import { Context } from '../../store/context';
 
 const Sidebar = () => {
   const { state, dispatch } = useContext(Context);
-  console.log('🚀 ~ file: Sidebar.jsx:14 ~ Sidebar ~ state:', state);
 
   const hideDoneTasks = () => {
     dispatch({ type: 'FILTER_TASKS' });
   };
+
+  const filterByCategory = (e) => {
+    const category = e.target.value;
+    dispatch({ type: 'FILTER_BY', payload: category });
+  };
+
+  const reserFilter = () => {
+    dispatch({ type: 'RESET_FILTER' });
+  };
+
   return (
     <ContainerSidebar>
       <header>Filter By:</header>
@@ -28,6 +37,7 @@ const Sidebar = () => {
               name="categories"
               value={category.name}
               id={category.name}
+              onChange={(e) => filterByCategory(e)}
             />
             <label htmlFor={category.name}>{category.name}</label>
           </ListElement>
@@ -42,7 +52,7 @@ const Sidebar = () => {
         />
         <label htmlFor="completed">Hide done tasks</label>
       </Form>
-      <Button>Reset filter</Button>
+      <Button onClick={() => reserFilter()}>Reset filter</Button>
     </ContainerSidebar>
   );
 };

@@ -138,7 +138,7 @@ const Modal = ({ isOpen, onClose }) => {
                 value={input.category}
                 isError={errors.category !== undefined}
               >
-                <option value="" disabled selected>
+                <option value="" disabled defaultValue>
                   Select a category
                 </option>
                 {categories.map((category) => (

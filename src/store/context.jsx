@@ -4,12 +4,12 @@ export const Context = createContext(null);
 
 export const ContextProvider = ({ children }) => {
   const storedItems = JSON.parse(localStorage.getItem('items'));
-  const storedItemsFiltered = storedItems.filter((item) => !item.completed);
 
   const initialState = {
     items: storedItems || [],
-    itemsFiltered: storedItemsFiltered || [],
     showFiltered: false,
+    itemsFiltered: [],
+    filterBy: 'all',
     loading: true,
     error: false
   };
@@ -53,6 +53,21 @@ export const ContextProvider = ({ children }) => {
         return {
           ...state,
           showFiltered: !state.showFiltered,
+          itemsFiltered: state.items.filter((item) => !item.completed),
+          loading: false,
+          error: false
+        };
+      case 'FILTER_BY':
+        return {
+          ...state,
+          filterBy: action.payload,
+          loading: false,
+          error: false
+        };
+      case 'RESET_FILTER':
+        return {
+          ...state,
+          filterBy: 'all',
           loading: false,
           error: false
         };
@@ -65,7 +80,6 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem('items', JSON.stringify(state.items));
-    localStorage.setItem('itemsFiltered', JSON.stringify(state.itemsFiltered));
   }, [state.items]);
 
   return (

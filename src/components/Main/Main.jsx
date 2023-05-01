@@ -1,31 +1,26 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { ContainerMain, Article, ContainerCards } from './Main.styles';
 import { Card } from '@components/Card';
 import { Context } from '@store/context';
 
 const Main = () => {
   const { state } = useContext(Context);
+  console.log('🚀 ~ file: Main.jsx:8 ~ Main ~ state:', state);
+
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    setItems(state.showFiltered ? state.itemsFiltered : state.items);
+  }, [state]);
+
   return (
     <ContainerMain>
       <Article>
         <ContainerCards>
-          {state.items === null || state.items.length === 0 ? (
+          {items.length === 0 ? (
             <p>no hay nada</p>
-          ) : state.showFiltered ? (
-            state.itemsFiltered.map((item, index) => (
-              <Card
-                key={index}
-                id={item.id}
-                title={item.title}
-                description={item.description}
-                category={item.category}
-                date={item.date}
-                time={item.time}
-                isCompleted={item.completed}
-              />
-            ))
           ) : (
-            state.items.map((item, index) => (
+            items.map((item, index) => (
               <Card
                 key={index}
                 id={item.id}
