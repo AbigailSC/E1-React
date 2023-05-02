@@ -71,6 +71,7 @@ const Modal = ({ isOpen, onClose }) => {
     if (Object.keys(errors).length > 0) return;
     dispatch({ type: 'ADD_TASK', payload: input });
     setInput({
+      id: v4(),
       title: '',
       date: '',
       time: '',
