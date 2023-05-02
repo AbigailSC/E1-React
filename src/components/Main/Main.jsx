@@ -5,20 +5,22 @@ import { Context } from '@store/context';
 
 const Main = () => {
   const { state } = useContext(Context);
-  console.log('🚀 ~ file: Main.jsx:8 ~ Main ~ state:', state);
-
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     setItems(state.showFiltered ? state.itemsFiltered : state.items);
   }, [state]);
 
+  // useEffect(() => {
+  //   setItems(state.items);
+  // }, [state.items]);
+
   return (
     <ContainerMain>
       <Article>
         <ContainerCards>
           {items.length === 0 ? (
-            <p>no hay nada</p>
+            <p className="label">You haven{"'"}t created a task yet</p>
           ) : (
             items.map((item, index) => (
               <Card

@@ -9,7 +9,6 @@ export const ContextProvider = ({ children }) => {
     items: storedItems || [],
     showFiltered: false,
     itemsFiltered: [],
-    filterBy: 'all',
     loading: true,
     error: false
   };
@@ -46,6 +45,11 @@ export const ContextProvider = ({ children }) => {
               ? { ...item, completed: !item.completed }
               : item
           ),
+          itemsFiltered: state.itemsFiltered.map((item) =>
+            item.id === action.payload
+              ? { ...item, completed: !item.completed }
+              : item
+          ),
           loading: false,
           error: false
         };
@@ -60,14 +64,17 @@ export const ContextProvider = ({ children }) => {
       case 'FILTER_BY':
         return {
           ...state,
-          filterBy: action.payload,
+          itemsFiltered: state.items.filter(
+            (item) => item.category === action.payload
+          ),
           loading: false,
           error: false
         };
       case 'RESET_FILTER':
         return {
           ...state,
-          filterBy: 'all',
+          showFiltered: false,
+          itemsFiltered: [],
           loading: false,
           error: false
         };

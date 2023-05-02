@@ -14,7 +14,7 @@ import {
 import { TfiMoreAlt } from 'react-icons/tfi';
 import { MdOutlineDateRange, MdAccessTime } from 'react-icons/md';
 import { Context } from '../../store/context';
-import EditModal from '../EditModal/EditModal';
+import { EditModal } from '@components/EditModal';
 
 const Card = ({
   title,
@@ -69,7 +69,7 @@ const Card = ({
         <button onClick={() => handleShow()}>
           <TfiMoreAlt className="icon" />
         </button>
-        <ModalContainer show={show}>
+        <ModalContainer show={show} task="add">
           <button
             onClick={() => {
               handleShow();

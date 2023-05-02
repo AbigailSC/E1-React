@@ -7,7 +7,7 @@ import {
   Form
 } from './sidebar.styles';
 import { categories } from '@helpers/categories';
-import { Context } from '../../store/context';
+import { Context } from '@store/context';
 
 const Sidebar = () => {
   const { state, dispatch } = useContext(Context);
