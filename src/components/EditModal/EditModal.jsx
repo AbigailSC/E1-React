@@ -8,30 +8,22 @@ import {
   Input,
   ContainerDateField,
   ErrorLabel,
-  SelectField
+  SelectField,
+  TextArea
 } from '../Modal/modal.styles';
 import { IoClose } from 'react-icons/io5';
 import { useState, useContext } from 'react';
 import { Context } from '@store/context';
 import { categories } from '@helpers/categories';
 
-const EditModal = ({
-  isOpen,
-  onClose,
-  title,
-  category,
-  isCompleted,
-  description,
-  date,
-  time,
-  id
-}) => {
+const EditModal = ({ isOpen, onClose, id }) => {
   const [input, setInput] = useState({
     title: '',
     date: '',
     time: '',
     category: '',
-    description: ''
+    description: '',
+    id
   });
 
   const [errors, setErrors] = useState({});
@@ -75,6 +67,7 @@ const EditModal = ({
     e.preventDefault();
     setErrors(validation(input));
     if (Object.keys(errors).length > 0) return;
+    console.log(input);
     dispatch({ type: 'EDIT_TASK', payload: input });
     setInput({
       title: '',
@@ -112,7 +105,6 @@ const EditModal = ({
               id="title"
               name="title"
               value={input.title}
-              defaultValue={title}
               isError={errors.title !== undefined}
             />
             {errors.title != null && <ErrorLabel>{errors.title}</ErrorLabel>}
@@ -162,6 +154,21 @@ const EditModal = ({
               )}
             </Field>
           </ContainerDateField>
+          <Field>
+            <label htmlFor="description">Description*</label>
+            <TextArea
+              onChange={(e) => handleChange(e)}
+              errors={errors.description}
+              name="description"
+              value={input.description}
+              id="description"
+              placeholder="add a description..."
+              isError={errors.description !== undefined}
+            />
+            {errors.description != null && (
+              <ErrorLabel>{errors.description}</ErrorLabel>
+            )}
+          </Field>
         </Body>
         <Divider />
         <Footer>

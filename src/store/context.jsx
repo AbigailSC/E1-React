@@ -9,6 +9,7 @@ export const ContextProvider = ({ children }) => {
     items: storedItems || [],
     showFiltered: false,
     itemsFiltered: [],
+    filterBy: 'all',
     loading: true,
     error: false
   };
@@ -64,9 +65,8 @@ export const ContextProvider = ({ children }) => {
       case 'FILTER_BY':
         return {
           ...state,
-          itemsFiltered: state.items.filter(
-            (item) => item.category === action.payload
-          ),
+          filterBy: action.payload,
+          itemsFiltered: [],
           loading: false,
           error: false
         };
