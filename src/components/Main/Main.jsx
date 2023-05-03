@@ -11,9 +11,11 @@ const Main = () => {
     setItems(state.showFiltered ? state.itemsFiltered : state.items);
   }, [state]);
 
-  // useEffect(() => {
-  //   setItems(state.items);
-  // }, [state.items]);
+  useEffect(() => {
+    if (state.filterBy !== 'all') {
+      setItems(state.items.filter((item) => item.category === state.filterBy));
+    }
+  }, [state.filterBy]);
 
   return (
     <ContainerMain>
