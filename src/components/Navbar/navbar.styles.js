@@ -49,3 +49,24 @@ export const Button = styled.button`
     }
   }
 `;
+
+export const NavBar = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  a, a:visited, a:active {
+    font-style: inherit;
+    color: inherit;
+    background-color: transparent;
+    font-size: inherit;
+    text-decoration: none;
+    font-variant: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  a:hover {
+    color: var(--text-color-hover);
+  }
+`;

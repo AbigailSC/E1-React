@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
-import { Header, Nav, Button } from './navbar.styles';
+import { Header, Nav, Button, NavBar } from './navbar.styles';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +18,11 @@ const Navbar = () => {
     <Header>
       <Nav>
         <h1>Todo List</h1>
+        <NavBar>
+          <Link to="/">Home</Link>
+          <Link to="/tasks">Tasks</Link>
+          <Link to="/pokemon">Pokemon</Link>
+        </NavBar>
         <Button onClick={handleOpenModal}>
           <span className="span"></span>
         </Button>
