@@ -20,8 +20,8 @@ const Navbar = () => {
         <h1>Todo List</h1>
         <NavBar>
           <Link to="/">Home</Link>
-          <Link to="/tasks">Tasks</Link>
-          <Link to="/pokemon">Pokemon</Link>
+          <Link to="/tasks">Tasks pendings</Link>
+          <Link to="/pokemon">Search a Pokemon</Link>
         </NavBar>
         <Button onClick={handleOpenModal}>
           <span className="span"></span>

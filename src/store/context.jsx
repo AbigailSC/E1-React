@@ -7,6 +7,7 @@ export const ContextProvider = ({ children }) => {
 
   const initialState = {
     items: storedItems || [],
+    pokemonInfo: undefined,
     showFiltered: false,
     itemsFiltered: [],
     filterBy: 'all',
@@ -77,6 +78,11 @@ export const ContextProvider = ({ children }) => {
           itemsFiltered: [],
           loading: false,
           error: false
+        };
+      case 'GET_POKEMON':
+        return {
+          ...state,
+          pokemonInfo: action.payload
         };
       default:
         return state;

@@ -1,7 +1,11 @@
 import axios from 'axios';
 
 export const getPokemonByName = async (name) => {
-  const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-  console.log("🚀 ~ file: fetchPokemon.js:6 ~ getPokemonByName ~ data:", data)
-  return data;
+  try {
+    const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }

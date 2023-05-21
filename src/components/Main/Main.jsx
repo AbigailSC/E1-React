@@ -8,7 +8,7 @@ const Main = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    setItems(state.showFiltered ? state.itemsFiltered : state.items);
+    setItems(state.items);
   }, [state]);
 
   useEffect(() => {

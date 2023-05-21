@@ -22,7 +22,7 @@ export const Nav = styled.nav`
 
 export const Button = styled.button`
   margin: 0;
-  padding: 0;
+  padding: 0 0.5em;
   .span {
     display: block;
     width: 20px;
@@ -54,6 +54,7 @@ export const NavBar = styled.ul`
   display: flex;
   align-items: center;
   gap: 2em;
+  padding: 0;
   a, a:visited, a:active {
     font-style: inherit;
     color: inherit;
