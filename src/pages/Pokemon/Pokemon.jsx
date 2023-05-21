@@ -18,6 +18,8 @@ const Pokemon = () => {
       dispatch({ type: 'GET_POKEMON', payload: pokedata });
     } catch (error) {
       console.log(error);
+    } finally {
+      setPokemonName('');
     }
   };
 

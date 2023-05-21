@@ -1,6 +1,11 @@
 import { useContext } from 'react';
 import { Context } from '@store/context';
-import { StyledPokemonCard, List } from './pokemonCard.styles';
+import {
+  StyledPokemonCard,
+  List,
+  Title,
+  ContainerUl
+} from './pokemonCard.styles';
 import { getPokemonType } from '@helpers/getPokemonType';
 
 const PokemonCard = () => {
@@ -13,11 +18,12 @@ const PokemonCard = () => {
       <List>{getPokemonType(pokemonData?.types)}</List>
       <p>Height: {pokemonData.height}</p>
       <p>Weight: {pokemonData.weight}</p>
-      <ul>
+      <Title>Habilities</Title>
+      <ContainerUl>
         {pokemonData.abilities.map((ability, index) => (
           <li key={index}>{ability.ability.name}</li>
         ))}
-      </ul>
+      </ContainerUl>
     </StyledPokemonCard>
   );
 };
