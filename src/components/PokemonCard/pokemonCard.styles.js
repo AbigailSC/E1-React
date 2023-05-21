@@ -14,10 +14,17 @@ export const StyledPokemonCard = styled.div`
     text-transform: capitalize;
     text-align: center;
   }
-  ul {
-    display: flex;
-    justify-content: center;
+`;
+
+export const List = styled.ul`
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  li {
+    list-style: none;
     margin: 0;
     padding: 0;
+    background-color: ${(props) => props.bgColor};
   }
-`;
+  `;

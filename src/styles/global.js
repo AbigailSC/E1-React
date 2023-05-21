@@ -34,6 +34,7 @@ const Globals = createGlobalStyle`
     --error-color: #ef4444;
     --blocked: #94a3b8;
     --blocked-hover: #64748b;
+
   }
   body {
     margin: 0;
