@@ -68,7 +68,6 @@ const EditModal = ({ isOpen, onClose, id }) => {
     e.preventDefault();
     setErrors(validation(input));
     if (Object.keys(errors).length > 0) return;
-    console.log(input);
     dispatch(edit(input));
     setInput({
       title: '',

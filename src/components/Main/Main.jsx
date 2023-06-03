@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 const Main = () => {
   const state = useSelector((state) => state.tasks);
-  console.log('🚀 ~ file: Main.jsx:9 ~ Main ~ state:', state);
   const [items, setItems] = useState([]);
 
   useEffect(() => {

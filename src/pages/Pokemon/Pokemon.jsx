@@ -7,7 +7,6 @@ import { getPokemonData } from '@store/slices/tasks';
 const Pokemon = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.tasks);
-  console.log('🚀 ~ file: Pokemon.jsx:10 ~ Pokemon ~ state:', state);
   const [pokemonName, setPokemonName] = useState('');
 
   const handleSubmit = async (e) => {
