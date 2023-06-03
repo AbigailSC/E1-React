@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import { Context } from '@store/context';
 import {
   StyledPokemonCard,
   List,
@@ -7,9 +5,10 @@ import {
   ContainerUl
 } from './pokemonCard.styles';
 import { getPokemonType } from '@helpers/getPokemonType';
+import { useSelector } from 'react-redux';
 
 const PokemonCard = () => {
-  const { state } = useContext(Context);
+  const state = useSelector((state) => state.tasks);
   const pokemonData = state.pokemonInfo;
   return (
     <StyledPokemonCard>

@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import {
   ContainerSidebar,
   ContainerList,
@@ -7,22 +6,24 @@ import {
   Form
 } from './sidebar.styles';
 import { categories } from '@helpers/categories';
-import { Context } from '@store/context';
+import { useDispatch, useSelector } from 'react-redux';
+import { filterTasks, filterBy, resetFilter } from '@store/slices/tasks';
 
 const Sidebar = () => {
-  const { state, dispatch } = useContext(Context);
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.tasks);
 
   const hideDoneTasks = () => {
-    dispatch({ type: 'FILTER_TASKS' });
+    dispatch(filterTasks());
   };
 
   const filterByCategory = (e) => {
     const category = e.target.value;
-    dispatch({ type: 'FILTER_BY', payload: category });
+    dispatch(filterBy(category));
   };
 
   const reserFilter = () => {
-    dispatch({ type: 'RESET_FILTER' });
+    dispatch(resetFilter());
   };
 
   return (

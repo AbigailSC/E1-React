@@ -12,9 +12,10 @@ import {
   TextArea
 } from '../Modal/modal.styles';
 import { IoClose } from 'react-icons/io5';
-import { useState, useContext } from 'react';
-import { Context } from '@store/context';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { categories } from '@helpers/categories';
+import { edit } from '@store/slices/tasks';
 
 const EditModal = ({ isOpen, onClose, id }) => {
   const [input, setInput] = useState({
@@ -28,7 +29,7 @@ const EditModal = ({ isOpen, onClose, id }) => {
 
   const [errors, setErrors] = useState({});
 
-  const { dispatch } = useContext(Context);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,7 +69,7 @@ const EditModal = ({ isOpen, onClose, id }) => {
     setErrors(validation(input));
     if (Object.keys(errors).length > 0) return;
     console.log(input);
-    dispatch({ type: 'EDIT_TASK', payload: input });
+    dispatch(edit(input));
     setInput({
       title: '',
       date: '',
@@ -179,7 +180,7 @@ const EditModal = ({ isOpen, onClose, id }) => {
           >
             edit
           </Button>
-          <button onClick={() => handleClose()}>cancel</button>
+          <Button onClick={() => handleClose()}>cancel</Button>
         </Footer>
       </ModalWrapper>
     </Overlay>

@@ -1,26 +1,20 @@
-import { useState, useContext } from 'react';
-import { Context } from '@store/context';
-import { getPokemonByName } from '@store/fetchPokemon';
+import { useState } from 'react';
 import { Container, FormSearch } from './pokemon.styles';
 import PokemonCard from '@components/pokemonCard/PokemonCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPokemonData } from '@store/slices/tasks';
 
 const Pokemon = () => {
-  const { dispatch } = useContext(Context);
-  const { state } = useContext(Context);
-
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.tasks);
+  console.log('🚀 ~ file: Pokemon.jsx:10 ~ Pokemon ~ state:', state);
   const [pokemonName, setPokemonName] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!pokemonName) return;
-    try {
-      const pokedata = await getPokemonByName(pokemonName);
-      dispatch({ type: 'GET_POKEMON', payload: pokedata });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setPokemonName('');
-    }
+    dispatch(getPokemonData(pokemonName));
+    setPokemonName('');
   };
 
   const handleInput = (e) => {

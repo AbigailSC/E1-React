@@ -1,6 +1,6 @@
-import { useState, useContext } from 'react';
-import { changeDate } from '../../helpers/changeDate';
-import { findColorByCategory } from '../../helpers/findColorByCategory';
+import { useState } from 'react';
+import { changeDate } from '@helpers/changeDate';
+import { findColorByCategory } from '@helpers/findColorByCategory';
 import {
   CardContainer,
   Header,
@@ -13,8 +13,9 @@ import {
 } from './card.styles';
 import { TfiMoreAlt } from 'react-icons/tfi';
 import { MdOutlineDateRange, MdAccessTime } from 'react-icons/md';
-import { Context } from '../../store/context';
 import { EditModal } from '@components/EditModal';
+import { useDispatch } from 'react-redux';
+import { remove, toggle } from '@store/slices/tasks';
 
 const Card = ({
   title,
@@ -25,11 +26,11 @@ const Card = ({
   time,
   id
 }) => {
-  const { dispatch } = useContext(Context);
+  const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(false);
   const bgColor = findColorByCategory(category);
   const newDate = changeDate(date);
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -44,11 +45,11 @@ const Card = ({
   };
 
   const handleRemove = () => {
-    dispatch({ type: 'DELETE_TASK', payload: id });
+    dispatch(remove(id));
   };
 
   const handleDone = () => {
-    dispatch({ type: 'TOGGLE_TASK', payload: id });
+    dispatch(toggle(id));
   };
 
   return (

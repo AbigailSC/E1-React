@@ -19,6 +19,7 @@ export const Header = styled.div`
 export const Footer = styled.div`
   display: flex;
   justify-content: flex-end;
+  gap: 0.5em;
 `;
 
 export const Button = styled.button`

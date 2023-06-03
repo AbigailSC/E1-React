@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import {
   Header,
   Footer,
@@ -14,8 +14,9 @@ import {
 import { Divider, Overlay, ModalWrapper } from '@styles/global';
 import { IoClose } from 'react-icons/io5';
 import { categories } from '@helpers/categories';
-import { Context } from '@store/context';
 import { v4 } from 'uuid';
+import { useDispatch } from 'react-redux';
+import { add } from '@store/slices/tasks';
 
 const Modal = ({ isOpen, onClose }) => {
   const [input, setInput] = useState({
@@ -30,7 +31,7 @@ const Modal = ({ isOpen, onClose }) => {
 
   const [errors, setErrors] = useState({});
 
-  const { dispatch } = useContext(Context);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -69,7 +70,7 @@ const Modal = ({ isOpen, onClose }) => {
     e.preventDefault();
     setErrors(validation(input));
     if (Object.keys(errors).length > 0) return;
-    dispatch({ type: 'ADD_TASK', payload: input });
+    dispatch(add(input));
     setInput({
       id: v4(),
       title: '',

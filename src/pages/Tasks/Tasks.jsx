@@ -1,16 +1,16 @@
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Card } from '@components/Card';
 import { Sidebar } from '@components/Sidebar';
-import { Context } from '@store/context';
 import {
   Article,
   ContainerCards,
   ContainerMain
 } from '@components/Main/Main.styles';
 import { HomeContainer } from '../Home/home.styles';
+import { useSelector } from 'react-redux';
 
 const Tasks = () => {
-  const { state } = useContext(Context);
+  const state = useSelector((state) => state.tasks);
   const [items, setItems] = useState([]);
   useEffect(() => {
     setItems(state.itemsFiltered);
