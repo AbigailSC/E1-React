@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Container, FormSearch } from './pokemon.styles';
-import PokemonCard from '@components/pokemonCard/PokemonCard';
+import PokemonCard from '@components/PokemonCard/PokemonCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemonData } from '@store/slices/tasks';
 
